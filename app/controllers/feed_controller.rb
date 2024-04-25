@@ -1,4 +1,4 @@
 class FeedController < ApplicationController
-  def show
-  end
+  allow_unauthenticated
+  def show; end
 end
