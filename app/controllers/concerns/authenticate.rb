@@ -35,7 +35,7 @@ module Authenticate
 
   def authenticate
     Current.app_session = authenticate_using_cookie
-    Current.user = Current.app_session.user
+    Current.user = Current.app_session&.user
   end
 
   def authenticate_using_cookie
@@ -53,7 +53,7 @@ module Authenticate
   end
 
   def require_login
-    flash.new[:notice] = t('login_required')
+    flash.now[:notice] = t('login_required')
     render 'sessions/new', status: :unauthorized
   end
 end
