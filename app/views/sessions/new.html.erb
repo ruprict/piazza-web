@@ -22,8 +22,12 @@
 
       <%= form.submit t(".submit"),
         class: "button is-primary is-large
-              is-align-self-flex-end mb-3 mt-3" %>”
+              is-align-self-flex-end mb-3 mt-3" %>
 
+      <div class="m-auto">
+        <%= form.label :remember_me  %>
+        <%= form.check_box :remember_me %>
+      </div>
     <% end %>
 
   </layout-column>

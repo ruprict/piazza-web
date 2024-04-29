@@ -34,4 +34,14 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
     assert_select '.notification', I18n.t('sessions.destroy.success')
   end
+
+  test 'providing remember me creates a cookie' do
+    log_in(@user, password: 'password', remember_me: '1')
+    assert_not_empty cookies[:app_session]
+  end
+
+  test 'no providing remember me does not create a cookie' do
+    log_in(@user, password: 'password', remember_me: '0')
+    assert_nil cookies[:app_session]
+  end
 end

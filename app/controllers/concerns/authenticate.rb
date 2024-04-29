@@ -21,10 +21,14 @@ module Authenticate
 
   protected
 
-  def log_in(app_session)
-    cookies.encrypted.permanent[:app_session] = {
-      value: app_session.to_h
-    }
+  def log_in(app_session, remember)
+    if remember
+      cookies.encrypted.permanent[:app_session] = {
+        value: app_session.to_h
+      }
+    else
+      session[:app_session] = app_session.to_h
+    end
   end
 
   def log_out

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       password: session_params[:password]
     )
     if @app_session
-      log_in(@app_session)
+      log_in(@app_session, session_params[:remember_me] == '1')
       flash[:success] = t('.success')
       redirect_to root_path, status: :see_other
     else
@@ -28,6 +28,6 @@ class SessionsController < ApplicationController
 
   def session_params
     @session_params ||=
-      params.require(:user).permit(:email, :password)
+      params.require(:user).permit(:email, :password, :remember_me)
   end
 end
