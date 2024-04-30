@@ -26,9 +26,8 @@ module Authenticate
       cookies.encrypted.permanent[:app_session] = {
         value: app_session.to_h
       }
-    else
-      session[:app_session] = app_session.to_h
     end
+    session[:app_session] = app_session.to_h
   end
 
   def log_out
@@ -47,7 +46,7 @@ module Authenticate
   end
 
   def authenticate_using_cookie
-    app_session = cookies.encrypted[:app_session]
+    app_session = session[:app_session] || cookies.encrypted[:app_session]
     authenticate_using app_session&.with_indifferent_access
   end
 
