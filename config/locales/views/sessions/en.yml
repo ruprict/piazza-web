@@ -2,7 +2,9 @@ en:
   sessions:
     new:
       title: Log In
-      sumbit: Submit
+      submit: Submit
+      sign_up_message: Haven't got an account yet?
+      sign_up: Sign up now.
     create:
       success: You're logged in!
       incorrect_details: The email or password was incorrect. Please try again.

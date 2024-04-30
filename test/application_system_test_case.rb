@@ -6,8 +6,8 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   private
 
-  def log_in(user, passwor: 'password')
-    visit_login_path
+  def log_in(user, password: 'password')
+    visit login_path
 
     fill_in User.human_attribute_name(:email), with: user.email
     fill_in User.human_attribute_name(:password), with: password

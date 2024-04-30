@@ -33,4 +33,21 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 'John', @user.name
     assert_equal 'john@email.com', @user.email
   end
+
+  test 'can update name and email without password' do
+    @user = users(:jerry)
+    @user.name = 'Jerry Seinfeld'
+    @user.save!
+
+    assert_equal 'Jerry Seinfeld', @user.name
+  end
+
+  test 'can update password' do
+    @user = users(:jerry)
+    @user.password = 'new_password'
+    @user.password_challenge = 'password'
+    @user.save(context: :password_change)
+
+    assert_not_nil User.authenticate_by(email: @user.email, password: 'new_password')
+  end
 end

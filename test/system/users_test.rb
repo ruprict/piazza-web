@@ -55,4 +55,14 @@ class UsersTest < ApplicationSystemTestCase
     assert_selector 'form .notification', text: I18n.t('users.update.success')
     assert_selector '#current_user_name', text: 'Jerry Seinfeld'
   end
+
+  test 'user can logout' do
+    log_in(users(:jerry))
+
+    visit root_path
+    find('.has-dropdown').hover
+    click_on I18n.t('application.navbar.logout')
+
+    assert_selector '.notification', text: I18n.t('sessions.destroy.success')
+  end
 end
