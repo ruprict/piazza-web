@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if @app_session
       log_in(@app_session, session_params[:remember_me] == '1')
       flash[:success] = t('.success')
-      redirect_to root_path, status: :see_other
+      recede_or_redirect_to root_path, status: :see_other
     else
       flash.now[:danger] = t('.incorrect_details')
       render :new, status: :unprocessable_entity
