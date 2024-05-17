@@ -1,5 +1,20 @@
 <% content_for :title, Current.user.name %>
 
+<% if turbo_native_app?  %>
+  <ol data-controller="bride--nav-menu">
+    <li> 
+      <%= button_to(
+        t("application.navbar.logout"),
+        logout_path,
+        method: :delete,
+        data: {
+          bridge__nav_menu_target: "item"
+        }
+      ) %>
+    </li>
+  </ol>
+<% end %>
+
 <%= turbo_frame_tag :user_details do %>
   <layout-columns class="columns is-centered">
     <layout-column class="column box is-5 mt-6 p-5 m-4">
